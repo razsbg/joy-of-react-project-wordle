@@ -7,6 +7,7 @@
     "eslint": "8.49.0",
     "eslint-config-react-app": "7.0.1",
     "husky": "^9.0.11",
+    "lint-staged": "^15.2.2",
     "new-component": "5.0.2",
     "parcel": "^2.12.0",
     "prettier": "2.6.2",
@@ -20,7 +21,7 @@
     "dev": "parcel public/index.html",
     "build": "parcel build public/index.html",
     "new-component": "new-component",
-    "format": "npx prettier --write ./src",
+    "format": "echo '**** Formatting files... ****' && lint-staged",
     "prepare": "husky"
   },
   "browserslist": "> 0.5%, last 2 versions, not dead"
