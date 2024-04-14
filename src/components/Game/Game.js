@@ -10,9 +10,30 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [guess, setGuess] = React.useState('');
+  const [currentGuess, setCurrentGuess] = React.useState('');
+  const [previousGuesses, setPreviousGuesses] = React.useState([]);
 
-  return <GuessInput guess={guess} setGuess={setGuess} />;
+  function submitGuess() {
+    const newGuesses = [...previousGuesses, currentGuess];
+    setPreviousGuesses(newGuesses);
+  }
+
+  return (
+    <>
+      <div className="guess-results">
+        {previousGuesses.map((guess, index) => (
+          <p key={index} className="guess">
+            {guess}
+          </p>
+        ))}
+      </div>
+      <GuessInput
+        guess={currentGuess}
+        setGuess={setCurrentGuess}
+        submitGuess={submitGuess}
+      />
+    </>
+  );
 }
 
 export default Game;
