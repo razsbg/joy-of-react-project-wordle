@@ -1,5 +1,3 @@
-import React from 'react';
-
 function GuessInput({ guess, setGuess, submitGuess }) {
   function handleSubmit(event) {
     event.preventDefault();
