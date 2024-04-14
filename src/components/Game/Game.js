@@ -1,6 +1,7 @@
 import * as React from 'react';
 
 import GuessInput from '../GuessInput/GuessInput';
+import PreviousGuesses from '../PreviousGuesses/PreviousGuesses';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 
@@ -20,13 +21,7 @@ function Game() {
 
   return (
     <>
-      <div className="guess-results">
-        {previousGuesses.map((guess, index) => (
-          <p key={index} className="guess">
-            {guess}
-          </p>
-        ))}
-      </div>
+      <PreviousGuesses previousGuesses={previousGuesses} />
       <GuessInput
         guess={currentGuess}
         setGuess={setCurrentGuess}
