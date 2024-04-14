@@ -21,8 +21,12 @@
     "dev": "parcel public/index.html",
     "build": "parcel build public/index.html",
     "new-component": "new-component",
-    "format": "echo '**** Formatting files... ****' && lint-staged",
+    "lint-staged": "echo '**** Linting with eslint... ****' && eslint ./src && echo '**** Formatting with prettier... ****' && lint-staged",
     "prepare": "husky"
   },
-  "browserslist": "> 0.5%, last 2 versions, not dead"
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "devDependencies": {
+    "@babel/plugin-proposal-private-property-in-object": "^7.21.11",
+    "@babel/plugin-transform-private-property-in-object": "^7.24.1"
+  }
 }
