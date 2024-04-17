@@ -5,8 +5,6 @@ import PreviousGuesses from '../PreviousGuesses/PreviousGuesses';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
 
-// testing linting
-
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
 // To make debugging easier, we'll log the solution in the console.
@@ -23,13 +21,47 @@ function Game() {
 
   return (
     <>
-      <PreviousGuesses previousGuesses={previousGuesses} />
+      <div className="guess-results">
+        <Guess value="HELLO" />
+        <Guess value="TABLE" />
+        <Guess />
+        <Guess />
+        <Guess />
+        <Guess />
+        <PreviousGuesses previousGuesses={previousGuesses} />
+      </div>
+
       <GuessInput
         guess={currentGuess}
         setGuess={setCurrentGuess}
         submitGuess={submitGuess}
       />
     </>
+  );
+}
+
+function Guess({ value }) {
+  if (!value) {
+    return (
+      <p className="guess">
+        <span className="cell"></span>
+        <span className="cell"></span>
+        <span className="cell"></span>
+        <span className="cell"></span>
+        <span className="cell"></span>
+      </p>
+    );
+  }
+
+  return (
+    <p className="guess">
+      {Array.from(value).map((letter, index) => { return (
+          <span key={index} className="cell">
+            {letter}
+          </span>
+        );
+      })}
+    </p>
   );
 }
 
