@@ -1,3 +1,5 @@
+# 🏆 Completed on {INSERT-DATE-HERE}
+---
 # Word Game
 
 ## Joy of React, Project I
