@@ -22,7 +22,6 @@ function GuessInput({ guess, setGuess, submitGuess }) {
             setGuess(event.target.value.toUpperCase())
           }
         />
-        } />
       </div>
     </form>
   );
