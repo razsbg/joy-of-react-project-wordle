@@ -43,26 +43,23 @@ function Game() {
 function Guess({ value }) {
   if (!value) {
     return (
-      <p className="guess">
+      <>
         <span className="cell"></span>
         <span className="cell"></span>
         <span className="cell"></span>
         <span className="cell"></span>
         <span className="cell"></span>
-      </p>
+      </>
     );
   }
 
-  return (
-    <p className="guess">
-      {Array.from(value).map((letter, index) => { return (
-          <span key={index} className="cell">
-            {letter}
-          </span>
-        );
-      })}
-    </p>
-  );
+  return Array.from(value).map((letter, index) => {
+    return (
+      <span key={index} className="cell">
+        {letter}
+      </span>
+    );
+  });
 }
 
 export default Game;
