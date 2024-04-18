@@ -1,9 +1,9 @@
 import * as React from 'react';
 
 import GuessInput from '../GuessInput/GuessInput';
-import PreviousGuesses from '../PreviousGuesses/PreviousGuesses';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
+import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
 
 // Pick a random word on every pageload.
 const answer = sample(WORDS);
@@ -12,30 +12,48 @@ console.info({ answer });
 
 function Game() {
   const [currentGuess, setCurrentGuess] = React.useState('');
-  const [previousGuesses, setPreviousGuesses] = React.useState([]);
+  const [guesses, setGuesses] = React.useState(
+    Array(NUM_OF_GUESSES_ALLOWED).fill(null)
+  );
+
+  const isGameOver = guesses.every((guess) => guess !== null);
 
   function submitGuess() {
-    const newGuesses = [...previousGuesses, currentGuess];
-    setPreviousGuesses(newGuesses);
+    if (isGameOver) {
+      return;
+    }
+
+    const newGuesses = [...guesses];
+    const newGuessIndex = newGuesses.findIndex(
+      (value) => value === null
+    );
+    newGuesses[newGuessIndex] = currentGuess;
+    setGuesses(newGuesses);
   }
 
   return (
     <>
       <div className="guess-results">
-        <Guess value="HELLO" />
-        <Guess value="TABLE" />
-        <Guess />
-        <Guess />
-        <Guess />
-        <Guess />
-        <PreviousGuesses previousGuesses={previousGuesses} />
+        {guesses.map((guess, index) => {
+          return (
+            <p key={index} className="guess">
+              <Guess value={guess} />
+            </p>
+          );
+        })}
       </div>
 
-      <GuessInput
-        guess={currentGuess}
-        setGuess={setCurrentGuess}
-        submitGuess={submitGuess}
-      />
+      {isGameOver ? (
+        <h2 style={{ fontWeight: 'normal' }}>
+          Game over. Try again tommorow 🌞
+        </h2>
+      ) : (
+        <GuessInput
+          guess={currentGuess}
+          setGuess={setCurrentGuess}
+          submitGuess={submitGuess}
+        />
+      )}
     </>
   );
 }
