@@ -13,16 +13,16 @@ function GuessInput({ guess, setGuess, submitGuess }) {
         <input
           type="text"
           id="guess-input"
-          name="guess-input"
-          title="Every guess must have 5 letters"
+          name="guess input"
+          title="5 letter word"
           value={guess}
           required={true}
-          pattern={'[a-zA-Z]{5,5}'}
-          maxLength={5}
+          pattern={'[a-zA-Z]{5}'}
           onChange={(event) =>
             setGuess(event.target.value.toUpperCase())
           }
         />
+        } />
       </div>
     </form>
   );
