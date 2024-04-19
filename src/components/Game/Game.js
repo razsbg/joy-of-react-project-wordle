@@ -12,7 +12,6 @@ const answer = sample(WORDS);
 console.info({ answer });
 
 function Game() {
-  const [currentGuess, setCurrentGuess] = React.useState('');
   const [guesses, setGuesses] = React.useState(
     Array(NUM_OF_GUESSES_ALLOWED).fill(null)
   );
@@ -29,7 +28,7 @@ function Game() {
     return total;
   }, 0);
 
-  function submitGuess() {
+  function submitGuess(currentGuess) {
     if (isGameOver) {
       return;
     }
@@ -54,12 +53,7 @@ function Game() {
         })}
       </div>
 
-      <GuessInput
-        guess={currentGuess}
-        setGuess={setCurrentGuess}
-        submitGuess={submitGuess}
-        disabled={isGameOver}
-      />
+      <GuessInput submitGuess={submitGuess} disabled={isGameOver} />
 
       {isGameLost && (
         <div className="banner sad">
