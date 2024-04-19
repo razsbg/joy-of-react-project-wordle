@@ -1,4 +1,4 @@
-function GuessInput({ guess, setGuess, submitGuess }) {
+function GuessInput({ guess, setGuess, submitGuess, disabled }) {
   function handleSubmit(event) {
     event.preventDefault();
 
@@ -21,6 +21,7 @@ function GuessInput({ guess, setGuess, submitGuess }) {
           onChange={(event) =>
             setGuess(event.target.value.toUpperCase())
           }
+          disabled={disabled}
         />
       </div>
     </form>
