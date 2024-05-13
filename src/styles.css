@@ -230,3 +230,27 @@ h1 {
     transform: translateY(0%);
   }
 }
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.letters-row {
+  display: flex;
+  gap: 0.35em;
+}
+
+.letter {
+  padding: 0.5em 0.75em;
+  border-radius: 0.25em;
+  min-width: 3.125rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--color-gray-900);
+  font-size: 1.35em;
+  font-weight: bold;
+}
