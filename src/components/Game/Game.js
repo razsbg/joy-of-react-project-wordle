@@ -3,7 +3,7 @@ import * as React from 'react';
 import GuessInput from '../GuessInput/GuessInput';
 import { sample } from '../../utils';
 import { WORDS } from '../../data';
-import { NUM_OF_GUESSES_ALLOWED } from '../../constants';
+import { NUM_OF_GUESSES_ALLOWED, LETTERS } from '../../constants';
 import { checkGuess } from '../../game-helpers';
 
 // Pick a random word on every pageload.
@@ -37,7 +37,8 @@ function Game() {
     const newGuessIndex = newGuesses.findIndex(
       (value) => value === null
     );
-    newGuesses[newGuessIndex] = currentGuess;
+    const checkedGuess = checkGuess(currentGuess, answer);
+    newGuesses[newGuessIndex] = checkedGuess;
     setGuesses(newGuesses);
   }
 
@@ -54,6 +55,8 @@ function Game() {
       </div>
 
       <GuessInput submitGuess={submitGuess} disabled={isGameOver} />
+
+      <Keyboard />
 
       {isGameLost && (
         <div className="banner sad">
@@ -89,15 +92,29 @@ function Guess({ guess }) {
     );
   }
 
-  const checkedGuess = checkGuess(guess, answer);
-
-  return checkedGuess.map(({ letter, status }, index) => {
+  return guess.map(({ letter, status }, index) => {
     return (
       <span key={index} className={`cell ${status}`}>
         {letter}
       </span>
     );
   });
+}
+
+function Keyboard() {
+  return (
+    <div className="keyboard">
+      {LETTERS.map((row, rowIndex) => (
+        <div key={rowIndex} className="letters-row">
+          {row.map((letter, index) => (
+            <button key={index} className="letter">
+              {letter}
+            </button>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
 }
 
 export default Game;
